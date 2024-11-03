@@ -24,7 +24,6 @@ Route::get('/student-register', [PageController::class, 'studentRegister'])->nam
 Route::get('/tutor-profile', [PageController::class, 'tutorProfile'])->name('tutor-profile');
 Route::get('/tuition-list', [PageController::class, 'tuitionList'])->name('tuition-list');
 Route::get('/messages', [PageController::class, 'messages'])->name('messages');
-Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::post('/tutor/register', [PageController::class, 'registerTutor'])->name('tutor.register.submit');
 Route::post('/student-registration', [PageController::class, 'registerStudent'])->name('student.register.submit');
 

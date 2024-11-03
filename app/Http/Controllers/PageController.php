@@ -36,10 +36,7 @@ class PageController extends Controller
     public function messages() {
         return view('messages');
     }
-
-    public function contact() {
-        return view('contact');
-    }
+    
 
     public function viewProfile()
     {

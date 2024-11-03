@@ -3,7 +3,7 @@
 @section('title', 'Messages')
 
 @section('content')
-    <h2 class="my-4">Messages</h2>
+    <h2 style = "text-align : center" class="my-4">Messages</h2>
     <ul class="list-group mb-4" style="max-width: 600px; margin: auto;">
         <li class="list-group-item">Hi, are you available for Math tutoring?</li>
         <li class="list-group-item list-group-item-secondary">Yes, I am available!</li>
