@@ -19,6 +19,7 @@ return new class extends Migration
         $table->string('location')->nullable();
         $table->text('subjects_taught')->nullable(); // Store as JSON or serialized
         $table->text('availability_days')->nullable(); // Store as JSON or serialized
+        $table->text('hourly_rate')->nullable(); // Store as JSON or serialized
         $table->timestamps();
     });
 }
