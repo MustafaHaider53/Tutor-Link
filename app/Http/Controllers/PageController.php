@@ -25,12 +25,21 @@ class PageController extends Controller
         return view('tutor-profile');
     }
 
-    public function tuitionList()
-    {
-        $tutors = Tutor::all(); // Fetch all tutors
-        return view('tuition-list', compact('tutors'));
-    
+    public function tuitionList(Request $request)
+{
+    $query = $request->input('search'); // Get the search query from the request
+
+    if ($query) {
+        // Fetch tutors matching the search query
+        $tutors = Tutor::where('name', 'LIKE', "%{$query}%")->get();
+    } else {
+        // Fetch all tutors if no search query is provided
+        $tutors = Tutor::all();
     }
+
+    return view('tuition-list', compact('tutors', 'query'));
+}
+
 
 
     public function messages() {
@@ -69,9 +78,11 @@ public function registerTutor(Request $request)
     ]);
 
     // Redirect or return a view after successful registration
-    return "<h1>Tutor Register Successfully!</h1>
-            <h2>You are now in our Tuition Listing page! </h2>
-            <a href='http://localhost:8000/tuition-list'>Tuition Listing</a>";
+    // return "<h1>Tutor Register Successfully!</h1>
+    //         <h2>You are now in our Tuition Listing page! </h2>
+    //         <a href='http://localhost:8000/tuition-list'>Tuition Listing</a>";
+
+    return redirect('tuition-list');
 }
 
 public function registerStudent(Request $request)

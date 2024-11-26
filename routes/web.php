@@ -1,8 +1,9 @@
 <?php
-use App\Http\Controllers\PageController;
+
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
-use App\Models\Tutor; // Import the Tutor mode
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -18,6 +19,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/tutor-register', [PageController::class, 'tutorRegister'])->name('tutor-register');
 Route::get('/student-register', [PageController::class, 'studentRegister'])->name('student-register');
@@ -27,8 +29,26 @@ Route::get('/messages', [PageController::class, 'messages'])->name('messages');
 Route::post('/tutor/register', [PageController::class, 'registerTutor'])->name('tutor.register.submit');
 Route::post('/student-registration', [PageController::class, 'registerStudent'])->name('student.register.submit');
 
+// Admin Panel Routes
+Route::prefix('admin')->group(function () {
+    // Show the tutor management page (view all tutors)
+    Route::get('/tutors', [AdminController::class, 'index'])->name('admin.tutors.index');
 
+    // Show the form to add a new tutor
+    Route::get('/tutors/create', [AdminController::class, 'create'])->name('admin.tutors.create');
+    
+    // Store the new tutor data in the database
+    Route::post('/tutors', [AdminController::class, 'store'])->name('admin.tutors.store');
 
+    // Show the form to edit a tutor
+    Route::get('/tutors/{id}/edit', [AdminController::class, 'edit'])->name('admin.tutors.edit');
+    
+    // Update the tutor data in the database
+    Route::put('/tutors/{id}', [AdminController::class, 'update'])->name('admin.tutors.update');
+    
+    // Delete the tutor from the database
+    Route::delete('/tutors/{id}', [AdminController::class, 'destroy'])->name('admin.tutors.destroy');
+});
 
 
 require __DIR__.'/auth.php';

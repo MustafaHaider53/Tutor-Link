@@ -1,9 +1,12 @@
+
 @extends('layouts.main')
 
 @section('title', 'Tuition Listings')
 
 @section('content')
     <h1 class = 'custom-list-h1'>Tuition Listings</h1>
+
+    
 
     <div class="tutor-listings custom-list">
         <table class="tutor-table custom-table">
@@ -27,10 +30,12 @@
                         <td class="table-cell">{{ $tutor->availability_days}}</td>
                         <!-- <td class="table-cell">{{ implode(', ', json_decode($tutor->subjects_taught, true) ?? []) }}</td>
                         <td class="table-cell">{{ implode(', ', json_decode($tutor->availability_days, true) ?? []) }}</td> -->
-                        <td class="table-cell">{{ $tutor->hourly_rate }}</td>
+                         <td class="table-cell">{{ $tutor->hourly_rate }}</td> 
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
 @endsection
+
+
