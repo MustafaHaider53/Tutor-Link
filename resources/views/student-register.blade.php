@@ -90,7 +90,7 @@
             <label for="notes" class="custom-label">Additional Notes/Requests</label>
             <textarea class="form-control custom-textarea" id="notes" name="notes" rows="3"></textarea>
         </div>
-
+        
         <div class="form-group custom-form-group">
             <label for="profile_picture" class="custom-label">Profile Picture (optional)</label>
             <input type="file" class="form-control-file custom-file-input" id="profile_picture" name="profile_picture">
@@ -109,4 +109,5 @@
         <button type="submit" class="btn btn-primary custom-submit-button">Register</button>
     </form>
 </div>
-@endsection
+@endsection 
+
