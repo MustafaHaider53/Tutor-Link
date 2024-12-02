@@ -20,9 +20,9 @@ class StudentSeeder extends Seeder
                 'email' => fake()->email(),
                 'phone' => fake()->phoneNumber(),
                 'location' => fake()->address(),
-                'subjects_needed' => fake()->word(), // Ensure this method exists or use an appropriate Faker method
+                'subjects_needed' => json_encode(fake()->randomElements(['Maths', 'Science', 'Chemistry', 'Physics', 'English', 'History', 'Biology'], 2)), // Generate an array of 2 random subjects
                 'learning_style' => fake()->randomElement(['visual', 'auditory', 'kinesthetic']), // Example of generating random learning styles
-                'availability_days' => fake()->dayOfWeek(), // Ensure this method exists or use an appropriate Faker method
+                'availability_days' => json_encode(fake()->randomElements(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'], 3)), // Generate an array of 3 random days
                 'notes' => 'No'
             ]);
         }

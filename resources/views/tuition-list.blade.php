@@ -26,10 +26,10 @@
                         <td class="table-cell">{{ $tutor->name }}</td>
                         <td class="table-cell">{{ $tutor->email }}</td>
                         <td class="table-cell">{{ $tutor->phone }}</td>
-                        <td class="table-cell">{{ $tutor->subjects_taught }}</td>
-                        <td class="table-cell">{{ $tutor->availability_days}}</td>
-                        <!-- <td class="table-cell">{{ implode(', ', json_decode($tutor->subjects_taught, true) ?? []) }}</td>
-                        <td class="table-cell">{{ implode(', ', json_decode($tutor->availability_days, true) ?? []) }}</td> -->
+                        {{-- <td class="table-cell">{{ $tutor->subjects_taught }}</td>
+                        <td class="table-cell">{{ $tutor->availability_days}}</td> --}}
+                        <td class="table-cell">{{ implode(', ', json_decode($tutor->subjects_taught, true) ?? []) }}</td>
+                        <td class="table-cell">{{ implode(', ', json_decode($tutor->availability_days, true) ?? []) }}</td> 
                          <td class="table-cell">{{ $tutor->hourly_rate }}</td> 
                     </tr>
                 @endforeach

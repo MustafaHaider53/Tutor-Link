@@ -19,4 +19,14 @@ class Tutor extends Model
         'availability_days',
         'hourly_rate'
     ];
+
+    public function tuitions()
+    {
+        return $this->hasMany(Tuition::class);
+    }
+
+    public function students()
+    {
+        return $this->belongsToMany(Student::class, 'tuitions');
+    }
 }

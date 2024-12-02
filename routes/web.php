@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\TuitionController;
 use App\Http\Middleware\ValidAdmin;
 use Illuminate\Support\Facades\Route;
 
@@ -51,7 +52,10 @@ Route::prefix('admin')->middleware(ValidAdmin::class)->group(function () {
     
     // Delete the tutor from the database
     Route::delete('/tutors/{id}', [AdminController::class, 'destroy'])->name('admin.tutors.destroy');
-});
+}); 
+
+Route::get('/matches', [TuitionController::class, 'findMatches'])->name('matches');
+
 
 
 require __DIR__.'/auth.php';

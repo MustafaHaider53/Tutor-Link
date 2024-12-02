@@ -3,8 +3,8 @@
 @section('content')
     <div class="container">
         <h1>Tutors</h1>
-        
-        @if(session('success'))
+
+        @if (session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
 
@@ -20,15 +20,16 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($tutors as $tutor)
+                @foreach ($tutors as $tutor)
                     <tr>
                         <td>{{ $tutor->name }}</td>
                         <td>{{ $tutor->email }}</td>
                         <td>{{ $tutor->phone }}</td>
                         <td>
                             <a href="{{ route('admin.tutors.edit', $tutor->id) }}" class="btn btn-warning">Edit</a>
-                            
-                            <form action="{{ route('admin.tutors.destroy', $tutor->id) }}" method="POST" style="display: inline-block;">
+
+                            <form action="{{ route('admin.tutors.destroy', $tutor->id) }}" method="POST"
+                                style="display: inline-block;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Delete</button>

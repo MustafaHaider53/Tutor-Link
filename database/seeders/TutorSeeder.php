@@ -19,8 +19,8 @@ class TutorSeeder extends Seeder
                 'email' => fake()->email(),
                 'phone' => fake()->phoneNumber(),
                 'location' => fake()->address(),
-                'subjects_taught' => fake()->randomElement(['Maths','Science','Chemistry','Physics','English','History','Biology']), // Ensure this method exists or use an appropriate Faker method
-                'availability_days' => fake()->dayOfWeek(), // Ensure this method exists or use an appropriate Faker method
+                'subjects_taught' => json_encode(fake()->randomElements(['Maths', 'Science', 'Chemistry', 'Physics', 'English', 'History', 'Biology'], 2)), // Generate an array of 2 random subjects
+                'availability_days' => json_encode(fake()->randomElements(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'], 3)), // Generate an array of 3 random days
                 'hourly_rate' => fake()->randomFloat(2, 100, 1000)
             ]);
         }
