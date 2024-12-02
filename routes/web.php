@@ -52,9 +52,11 @@ Route::prefix('admin')->middleware(ValidAdmin::class)->group(function () {
     
     // Delete the tutor from the database
     Route::delete('/tutors/{id}', [AdminController::class, 'destroy'])->name('admin.tutors.destroy');
+
+    Route::get('/matches', [TuitionController::class, 'findMatches'])->name('admin.tutors.matches');
 }); 
 
-Route::get('/matches', [TuitionController::class, 'findMatches'])->name('matches');
+
 
 
 

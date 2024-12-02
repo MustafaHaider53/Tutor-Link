@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\Tutor;
 use App\Models\Student;
@@ -39,6 +38,6 @@ class TuitionController extends Controller
         }
     }
 
-    return view('matches', compact('matches'));
+    return view('admin.tutors.matches', compact('matches'));
 }
 }
