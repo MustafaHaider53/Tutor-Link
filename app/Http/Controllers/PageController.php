@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Tuition;
 use App\Models\Tutor; // Import the Tutor model
 use App\Models\Student; // Import the Tutor model
 use Illuminate\Http\Request;
@@ -58,6 +59,7 @@ public function registerTutor(Request $request)
 {
     // Validate the request data
     $validatedData = $request->validate([
+
         'name' => 'required|string|max:255',
         'email' => 'required|string|email|max:255|unique:tutors',
         'phone' => 'required|string|max:15',
@@ -76,6 +78,17 @@ public function registerTutor(Request $request)
         'availability_days' => json_encode($validatedData['availability_days']),
         'hourly_rate' => $validatedData['hourly_rate']
     ]);
+
+
+
+    // Create tutor
+
+
+// Automatically create a tuition record linking tutor and student
+
+
+
+
 
     // Redirect or return a view after successful registration
     // return "<h1>Tutor Register Successfully!</h1>
@@ -103,6 +116,10 @@ public function registerStudent(Request $request)
 
     Student::create($data);
 
+    Tuition::create([
+        'student_id' => $data['id'], // Associate student with the tuition
+    ]); 
+    
     return "<h1>Studen Register sucessgully</h1>";
 }
 

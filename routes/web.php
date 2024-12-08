@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\StudentTutorController;
 use App\Http\Controllers\TuitionController;
 use App\Http\Middleware\ValidAdmin;
 use Illuminate\Support\Facades\Route;
@@ -58,6 +59,6 @@ Route::prefix('admin')->middleware(ValidAdmin::class)->group(function () {
 
 
 
-
+Route::resource('tuition',StudentTutorController::class);
 
 require __DIR__.'/auth.php';

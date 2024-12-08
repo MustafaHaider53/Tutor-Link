@@ -15,7 +15,6 @@ class TuitionSeeder extends Seeder
      */
     public function run()
     {
-        // Fetch all tutors and students
         $tutors = Tutor::all();
         $students = Student::all();
 
@@ -40,6 +39,7 @@ class TuitionSeeder extends Seeder
                     ]);
                 }
             }
-        }
+        }// Fetch all tutors and students
+        
     }
 }

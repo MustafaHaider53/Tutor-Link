@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             StudentSeeder::class,
             TutorSeeder::class,
-            TuitionSeeder::class
+            //TuitionSeeder::class
         ]);
 
         // Student::factory(5)->create();

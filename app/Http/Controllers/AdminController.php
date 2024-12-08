@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tuition;
 use App\Models\Tutor;
 use Illuminate\Http\Request;
 
@@ -24,8 +25,8 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         // Validate the input data
-        $request->validate([
-            'name' => 'required',
+        $tutor = $request->validate([
+            'name' => 'required',   
             'email' => 'required|email|unique:tutors',
             'phone' => 'required',
             'subjects_taught' => 'required',
@@ -33,8 +34,11 @@ class AdminController extends Controller
         ]);
 
         // Create a new tutor record
-        Tutor::create($request->all());
+        $newTutor = Tutor::create($tutor);
 
+        Tuition::create([
+            'tutor_id' => $newTutor['id'], // Associate tutor with the tuition
+        ]);
         // Redirect to the tutor list page with success message
         return redirect()->route('admin.tutors.index')->with('success', 'Tutor added successfully.');
     }
@@ -76,3 +80,4 @@ class AdminController extends Controller
         return redirect()->route('admin.tutors.index')->with('success', 'Tutor deleted successfully.');
     }
 }
+    
