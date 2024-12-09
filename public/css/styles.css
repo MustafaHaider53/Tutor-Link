@@ -138,5 +138,29 @@ footer {
     color: rgb(23, 63, 196);
 }
 
-/* css for home  */
+/* css for table  */
+.table-container {
+    margin: 0 auto; /* Center the table container */
+}
+
+.table {
+    font-size: 0.9rem; /* Reduce font size */
+    margin: 0 auto; /* Center the table */
+    width: 100%; /* Adjust to container width */
+}
+
+th, td {
+    padding: 5px 8px; /* Reduce padding */
+}
+
+h2 {
+    font-size: 1.5rem; /* Adjust heading size */
+    margin-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+    .table {
+        font-size: 0.8rem; /* Further reduce font size for smaller screens */
+    }
+}
 

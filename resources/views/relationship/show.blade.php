@@ -37,12 +37,10 @@
                         <td>{{ $tuition['student']['email'] }}</td>
                         <td>{{ implode(', ', json_decode($tuition['student']['subjects_needed'])) }}</td>
                         <td>{{ implode(', ', json_decode($tuition['student']['availability_days'])) }}</td>
-
-
-
                     </tr>
-
             </tbody>
         </table>
+
+        <a href="{{route('relationship.index')}}" class = "btn btn-primary">Back</a>
     </div>
 @endsection

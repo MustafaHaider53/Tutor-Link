@@ -10,7 +10,11 @@
 
         <a href="{{ route('admin.tutors.create') }}" class="btn btn-primary mb-3">Add New Tutor</a>
 
-        <a href="{{ route('admin.tutors.matches') }}" class="btn btn-success mb-3">See Relationship</a>
+        <form action="{{ route('relationship.store')}}" method="POST"
+            style="display: inline-block;">
+            @csrf
+            <button type="submit" class="btn btn-primary">Display Relationship</button> 
+        </form>
 
         <table class="table">
             <thead>

@@ -26,11 +26,13 @@ class AdminController extends Controller
     {
         // Validate the input data
         $tutor = $request->validate([
-            'name' => 'required',   
-            'email' => 'required|email|unique:tutors',
-            'phone' => 'required',
-            'subjects_taught' => 'required',
-            'availability_days' => 'required',
+
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:tutors',
+            'phone' => 'required|string|max:15',
+            'subjects_taught' => 'nullable|array',
+            'availability_days' => 'nullable|array',
+
         ]);
 
         // Create a new tutor record
@@ -55,11 +57,13 @@ class AdminController extends Controller
     {
         // Validate the input data
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:tutors,email,' . $id,
-            'phone' => 'required',
-            'subjects_taught' => 'required',
-            'availability_days' => 'required',
+
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:tutors' . $id,
+            'phone' => 'required|string|max:15',
+            'subjects_taught' => 'nullable|array',
+            'availability_days' => 'nullable|array',
+
         ]);
 
         // Find the tutor and update their data
@@ -80,4 +84,3 @@ class AdminController extends Controller
         return redirect()->route('admin.tutors.index')->with('success', 'Tutor deleted successfully.');
     }
 }
-    
