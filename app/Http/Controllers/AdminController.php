@@ -27,20 +27,18 @@ class AdminController extends Controller
         // Validate the input data
         $tutor = $request->validate([
 
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:tutors',
+            'name' => 'required|string',
+            'email' => 'required|string|email',
             'phone' => 'required|string|max:15',
-            'subjects_taught' => 'nullable|array',
-            'availability_days' => 'nullable|array',
+            'subjects_taught' => 'nullable',
+            'availability_days' => 'nullable',
 
         ]);
 
         // Create a new tutor record
-        $newTutor = Tutor::create($tutor);
+        Tutor::create($tutor);
 
-        Tuition::create([
-            'tutor_id' => $newTutor['id'], // Associate tutor with the tuition
-        ]);
+        
         // Redirect to the tutor list page with success message
         return redirect()->route('admin.tutors.index')->with('success', 'Tutor added successfully.');
     }
@@ -58,11 +56,11 @@ class AdminController extends Controller
         // Validate the input data
         $request->validate([
 
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:tutors' . $id,
+            'name' => 'required|string',
+            'email' => 'required|string|email',
             'phone' => 'required|string|max:15',
-            'subjects_taught' => 'nullable|array',
-            'availability_days' => 'nullable|array',
+            'subjects_taught' => 'nullable',
+            'availability_days' => 'nullable',
 
         ]);
 
@@ -82,5 +80,14 @@ class AdminController extends Controller
 
         // Redirect back to the tutor list with success message
         return redirect()->route('admin.tutors.index')->with('success', 'Tutor deleted successfully.');
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->get('query');
+        $tutors = Tutor::where('name', 'LIKE', '%' . $query . '%')
+        ->orWhere('email', 'LIKE', '%' . $query . '%')
+        ->get();
+        return view('admin.tutors.search-results', compact('tutors'));
     }
 }
