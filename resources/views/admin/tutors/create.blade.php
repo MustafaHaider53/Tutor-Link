@@ -4,7 +4,7 @@
     <div class="container">
         <h1>Add New Tutor</h1>
 
-        <form action="{{ route('admin.tutors.store') }}" method="POST">
+        <form action="{{ route('admin.tutors.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="name">Name</label>
@@ -19,6 +19,11 @@
             <div class="form-group">
                 <label for="phone">Phone</label>
                 <input type="text" name="phone" id="phone" class="form-control" required>
+            </div>
+
+            <div class="form-group ">
+                <label for="profile_picture">Profile Picture</label>
+                <input type="file" class="form-control-file" id="profile_picture" name="profile_picture">
             </div>
 
             <div class="form-group">

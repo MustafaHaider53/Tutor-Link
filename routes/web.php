@@ -55,6 +55,8 @@ Route::prefix('admin')->middleware(ValidAdmin::class)->group(function () {
     // Delete the tutor from the database
     Route::delete('/tutors/{id}', [AdminController::class, 'destroy'])->name('admin.tutors.destroy');
 
+    Route::get('/tutors/{id}', [AdminController::class, 'show'])->name('admin.tutors.show');
+
     Route::get('/search', [AdminController::class, 'search'])->name('admin.tutors.search');
     
     Route::resource('relationship',RelationShipController::class);

@@ -16,6 +16,7 @@ return new class extends Migration
         $table->string('name');
         $table->string('email')->unique();
         $table->string('phone');
+        $table->string('profile_picture')->nullable();
         $table->string('location')->nullable();
         $table->text('subjects_taught')->nullable(); // Store as JSON or serialized
         $table->text('availability_days')->nullable(); // Store as JSON or serialized

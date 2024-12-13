@@ -13,6 +13,7 @@ class Tutor extends Model
         'name',
         'email',
         'phone',
+        'profile_picture',
         'location',
         'subjects_taught',
         'teaching_style',

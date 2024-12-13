@@ -4,7 +4,7 @@
     <div class="container">
         <h1>Edit Tutor</h1>
 
-        <form action="{{ route('admin.tutors.update', $tutor->id) }}" method="POST">
+        <form action="{{ route('admin.tutors.update', $tutor->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -23,10 +23,15 @@
                 <input type="text" name="phone" id="phone" class="form-control" value="{{ $tutor->phone }}" required>
             </div>
 
+            <div class="form-group ">
+                <label for="profile_picture">Profile Picture</label>
+                <input type="file" class="form-control-file"  id="profile_picture" name="profile_picture">
+            </div>
+
             <div class="form-group">
                 <label for="subjects_taught">Subjects Taught</label>
                 <input type="text" name="subjects_taught" id="subjects_taught" class="form-control" value="{{ $tutor->subjects_taught }}" required>
-            </div>
+            </div>  
 
             <div class="form-group">
                 <label for="availability_days">Availability Days</label>

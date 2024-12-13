@@ -63,6 +63,7 @@ public function registerTutor(Request $request)
         'name' => 'required|string|max:255',
         'email' => 'required|string|email|max:255|unique:tutors',
         'phone' => 'required|string|max:15',
+        'profile_picture' => 'nullable|image|mimes:png,jpg,jpeg|max:2048',
         'subjects_taught' => 'nullable|array',
         'availability_days' => 'nullable|array',
         'hourly_rate' => 'required|numeric|min:0',
