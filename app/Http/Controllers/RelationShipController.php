@@ -53,18 +53,21 @@ class RelationShipController extends Controller
 
                 if (!empty($matchingSubjects) && !empty($matchingDays)) {
                     // Create a tuition entry if a match is found
-                
-                    Tuition::create([
-                        'tutor_id' => $tutor->id,
-                        'student_id' => $student->id,
-                    ]);
+                    try {
+                        Tuition::create([
+                            'tutor_id' => $tutor->id,
+                            'student_id' => $student->id,
+                        ]);
+                        session()->flash('success', 'Tuition added successfully.');
+                    } catch (\Exception $e) {
+                        \Log::error('Failed to create tuition: ' . $e->getMessage());
+                        session()->flash('error', 'Failed to add tuition.');
+                    }
                 }
             }
         }
-    
-        
-    
-        return redirect()->route('relationship.index')->with('success', 'Tuition added successfully.');        
+
+        return redirect()->route('relationship.index');        
 
     }
 

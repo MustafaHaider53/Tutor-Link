@@ -19,7 +19,6 @@
                 <thead class="table-dark">
                     <tr>
                         <th>#</th>
-                        
                         <th>Tutor Name</th>
                         <th>Tutor Email</th>
                         <th>Subjects Taught</th>
