@@ -6,6 +6,7 @@ use App\Models\Tuition;
 use App\Models\Tutor;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Log;
 
 class RelationShipController extends Controller
 {
@@ -99,8 +100,15 @@ class RelationShipController extends Controller
      */
     public function destroy(string $id)
     {
-        $tuition = Tuition::findOrFail($id);
-        $tuition->delete();
-        return redirect()->route('relationship.index')->with('success','Tuition deleted sucessfully');
+        try {
+            $tuition = Tuition::findOrFail($id);
+            $tuition->delete();
+            Session()->flash('success', 'Tuition deleted successfully.');
+        } catch (\Exception $e) {
+            Log::error('Error deleting tuition: ' . $e->getMessage());
+            Session()->flash('error', 'An error occurred while deleting the tuition.');
+        }
+
+        return redirect()->route('relationship.index');
     }
 }

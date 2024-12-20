@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tutor;
 use Illuminate\Http\Request;
+use Log;
 use Storage;
 
 class AdminController extends Controller
@@ -35,19 +36,30 @@ class AdminController extends Controller
             'subjects_taught' => 'nullable',
             'availability_days' => 'nullable',
 
+            
         ]);
         
 
-        //store image
-
-        $path = $request->file('profile_picture')->store('images', 'public');
-        $fileName = basename($path);
-        $tutor['profile_picture'] = $fileName;
         
+        //store image
+        try {
+            if ($request->hasFile('profile_picture')) {
+            $path = $request->file('profile_picture')->store('images', 'public');
+            $fileName = basename($path);
+            $tutor['profile_picture'] = $fileName;
+            }
 
+            // Create a new tutor record
+            Tutor::create($tutor);
 
-        // Create a new tutor record
-        Tutor::create($tutor,);
+            // Set success message in Session
+            Session()->flash('message', 'Tutor added successfully.');
+            Session()->flash('alert-class', 'alert-success');
+        } catch (\Exception $e) {
+            // Set error message in Session
+            Session()->flash('message', 'Something went wrong. Please try again later.');
+            Session()->flash('alert-class', 'alert-danger');
+        }
 
         
         // Redirect to the tutor list page with success message
@@ -88,20 +100,30 @@ class AdminController extends Controller
 
         // Store the new profile picture
 
-        if ($request->hasFile('profile_picture')) {
-
-        if ($tutor->profile_picture && file_exists(storage_path('app/public/images/' . $tutor->profile_picture))) {
-            unlink(storage_path('app/public/images/' . $tutor->profile_picture));
+        try {
+            if ($request->hasFile('profile_picture')) {
+            if ($tutor->profile_picture && file_exists(storage_path('app/public/images/' . $tutor->profile_picture))) {
+                unlink(storage_path('app/public/images/' . $tutor->profile_picture));
+            }
             $path = $request->file('profile_picture')->store('images', 'public');
             $fileName = basename($path);
             $validatedData['profile_picture'] = $fileName;
-            
+            }
+
+            // Find the tutor and update their data
+            $tutor->update($validatedData);
+
+            // Set success message in Session
+            Session()->flash('message', 'Tutor updated successfully.');
+            Session()->flash('alert-class', 'alert-success');
+        } catch (\Exception $e) {
+            // Log the error
+            Log::error('Error updating tutor: ' . $e->getMessage());
+
+            // Set error message in Session
+            Session()->flash('message', 'Something went wrong. Please try again later.');
+            Session()->flash('alert-class', 'alert-danger');
         }
-    }
-
-
-        // Find the tutor and update their data
-        $tutor->update($request->all());
 
         // Redirect back to the tutor list with success message
         return redirect()->route('admin.tutors.index')->with('success', 'Tutor updated successfully.');
@@ -111,10 +133,24 @@ class AdminController extends Controller
     public function destroy($id)
     {
         $tutor = Tutor::findOrFail($id);
-        $tutor->delete();
+        try {
+        
+            $tutor->delete();
 
-        // Redirect back to the tutor list with success message
-        return redirect()->route('admin.tutors.index')->with('success', 'Tutor deleted successfully.');
+            // Set success message in Session
+            Session()->flash('message', 'Tutor deleted successfully.');
+            Session()->flash('alert-class', 'alert-success');
+        } catch (\Exception $e) {
+            // Log the error
+            Log::error('Error deleting tutor: ' . $e->getMessage());
+
+            // Set error message in Session
+            Session()->flash('message', 'Something went wrong. Please try again later.');
+            Session()->flash('alert-class', 'alert-danger');
+        }
+
+        // Redirect back to the tutor list
+        return redirect()->route('admin.tutors.index');
     }
 
     public function search(Request $request)
@@ -125,4 +161,6 @@ class AdminController extends Controller
         ->get();
         return view('admin.tutors.search-results', compact('tutors'));
     }
+
+    
 }

@@ -4,8 +4,11 @@
 
     <div class="container">
         <h1>Tutors</h1>
-        @if (session('success'))
-            <div class="alert alert-success">{{ session('success') }}</div>
+        @if(Session::has('message'))
+        <div class="alert {{ Session::get('alert-class') }} alert-dismissible">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            {{ Session::get('message') }}
+        </div>
         @endif
 
         <div class="d-flex flex-row-reverse p-2">
@@ -59,6 +62,7 @@
         <script>
             $(document).ready(function() {
                 $('#student-search').on('keyup', function() {
+                
                     let query = $(this).val();
                     if (query.length > 0) {
                         // Perform the AJAX request

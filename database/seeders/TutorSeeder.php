@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Http;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Tutor;
@@ -13,6 +14,7 @@ class TutorSeeder extends Seeder
      */
     public function run(): void
     {
+        
         for ($i=0; $i < 10 ; $i++) { 
             Tutor::create([
                 'name' => fake()->name(),
@@ -24,5 +26,8 @@ class TutorSeeder extends Seeder
                 'hourly_rate' => fake()->randomFloat(2, 100, 1000)
             ]);
         }
+        
     }
+
+     
 }

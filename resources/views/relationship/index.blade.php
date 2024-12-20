@@ -7,12 +7,6 @@
     <div class="container mt-5">
         <h2 class="text-center mb-4">Tutor-Student Tuitions</h2>
 
-        @if (session('success'))
-            <div class="alert alert-success">{{ session('success') }}</div>
-        @endif
-        
-        
-        
 
         <div class="table-container mx-auto" style="max-width: 90%; width: auto;">
             <table class="table table-sm table-striped table-bordered text-center">

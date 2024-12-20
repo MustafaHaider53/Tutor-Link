@@ -12,11 +12,14 @@ return new class extends Migration
     public function up()
 {
     Schema::create('tutors', function (Blueprint $table) {
+
+        
+
         $table->id();
         $table->string('name');
         $table->string('email')->unique();
         $table->string('phone');
-        $table->string('profile_picture')->nullable();
+        $table->string('profile_picture', 10000)->nullable();
         $table->string('location')->nullable();
         $table->text('subjects_taught')->nullable(); // Store as JSON or serialized
         $table->text('availability_days')->nullable(); // Store as JSON or serialized
