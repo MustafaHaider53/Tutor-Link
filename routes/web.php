@@ -4,15 +4,11 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RelationShipController;
-use App\Http\Controllers\StudentTutorController;
 use App\Http\Controllers\TuitionController;
 use App\Http\Middleware\ValidAdmin;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/welcome', function () {
-    return view('welcome');
-});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -26,7 +22,6 @@ Route::middleware('auth')->group(function () {
 
 
 Route::get('/', [PageController::class, 'home'])->name('home');
-
 Route::get('/tutor-register', [PageController::class, 'tutorRegister'])->name('tutor-register');
 Route::get('/student-register', [PageController::class, 'studentRegister'])->name('student-register');
 Route::get('/tutor-profile', [PageController::class, 'tutorProfile'])->name('tutor-profile');
