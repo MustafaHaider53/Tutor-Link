@@ -15,18 +15,10 @@ class RelationShipController extends Controller
      */
     public function index()
     {
+        // Fetch all tuitions with their associated tutor and student
         $tuitions = Tuition::with('tutor','student')->get();
 
         return view('relationship.index', compact('tuitions'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-
-     
     }
 
     /**
@@ -34,17 +26,15 @@ class RelationShipController extends Controller
      */
     public function store(Request $request)
     {
-
+        // Fetch all tutors and students
         $tutors = Tutor::all();
         $students = Student::all();
 
         foreach ($students as $student) {
             foreach ($tutors as $tutor) {
                 // Decode JSON fields
-
                 $studentSubjects = json_decode($student->subjects_needed, true);
                 $studentAvailability = json_decode($student->availability_days, true);
-
                 $tutorSubjects = json_decode($tutor->subjects_taught, true);
                 $tutorAvailability = json_decode($tutor->availability_days, true);
 
@@ -54,7 +44,6 @@ class RelationShipController extends Controller
 
                 if (!empty($matchingSubjects) && !empty($matchingDays)) {
                     // Create a tuition entry if a match is found
-                
                     Tuition::create([
                         'tutor_id' => $tutor->id,
                         'student_id' => $student->id,
@@ -62,11 +51,8 @@ class RelationShipController extends Controller
                 }
             }
         }
-    
-        
-    
-        return redirect()->route('relationship.index')->with('success', 'Tuition added successfully.');        
 
+        return redirect()->route('relationship.index')->with('success', 'Tuition added successfully.');
     }
 
     /**
@@ -74,25 +60,10 @@ class RelationShipController extends Controller
      */
     public function show(string $id)
     {
+        // Fetch the tuition with its associated tutor and student
         $tuition = Tuition::with('tutor','student')->findOrFail($id);
 
         return view('relationship.show',compact('tuition'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
     }
 
     /**
@@ -101,6 +72,7 @@ class RelationShipController extends Controller
     public function destroy(string $id)
     {
         try {
+            // Find and delete the tuition
             $tuition = Tuition::findOrFail($id);
             $tuition->delete();
             Session()->flash('success', 'Tuition deleted successfully.');

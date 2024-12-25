@@ -13,10 +13,10 @@
     <title>Tutoring Opportunity</title>
 </head>
 <body>
-    <p>Dear {{ $tutorName }},</p>
-    <p>{{ $messageContent }}</p>
-    <p>Best regards,</p>
-    <p>Your Website Team</p>
+    <p><strong>Dear {{ $tutorName }},</strong></p>
+    <p>{{ $messageContent }}</p>    
+    <p><strong>Best regards,</strong></p>
+    <p><strong>TutorsLink Team</strong></p>
 </body>
 </html>
 

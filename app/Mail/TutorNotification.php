@@ -14,11 +14,13 @@ class TutorNotification extends Mailable
 
     public $tutor;
 
+    // Constructor to initialize the tutor property
     public function __construct(Tutor $tutor)
     {
         $this->tutor = $tutor;
     }
 
+    // Build the email message
     public function build()
     {
         return $this->view('email.tutor-notification')

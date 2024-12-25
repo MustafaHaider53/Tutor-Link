@@ -9,6 +9,7 @@ class Student extends Model
 {
     use HasFactory;
 
+    // Define the fillable attributes for mass assignment
     protected $fillable = [
         'name',
         'email',
@@ -20,15 +21,15 @@ class Student extends Model
         'notes'
     ];
 
+    // Define the relationship with the Tuition model
     public function tuitions()
     {
         return $this->hasMany(Tuition::class);
     }
 
+    // Define the many-to-many relationship with the Tutor model through the tuitions table
     public function tutors()
     {
         return $this->belongsToMany(Tutor::class, 'tuitions');
     }
-
-
 }

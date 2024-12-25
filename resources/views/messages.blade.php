@@ -11,7 +11,7 @@
     </ul>
     <form class="mx-auto" style="max-width: 600px;">
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="Type your message">
+            <input type="text" class="form-control" placeholder="Type your email of tutor here...">
             <button class="btn btn-primary" type="button">Send</button>
         </div>
     </form>

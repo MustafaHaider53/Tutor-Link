@@ -42,7 +42,7 @@
                         <td>{{ $tutor->email }}</td>
                         <td>{{ $tutor->phone }}</td>
                         <td>
-                            <a href="{{ route('admin.tutors.edit', $tutor->id) }}" class="btn btn-warning">Edit</a>
+                            <a href="{{ route('admin.tutors.edit', $tutor->id) }}" class="btn btn-primary">Edit</a>
                             <a href="{{ route('admin.tutors.show', $tutor->id) }}" class="btn btn-warning">Show</a>
 
                             <form action="{{ route('admin.tutors.destroy', $tutor->id) }}" method="POST"

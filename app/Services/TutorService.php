@@ -24,6 +24,7 @@ class TutorService
      */
     public function createTutor(Request $request)
     {
+        // Validate the request data
         $data = $request->validate([
             'name' => 'required|string',
             'email' => 'required|string|email|unique:tutors',
@@ -34,17 +35,18 @@ class TutorService
         ]);
 
         try {
+            // Handle profile picture upload
             if ($request->hasFile('profile_picture')) {
                 $path = $request->file('profile_picture')->store('images', 'public');
                 $data['profile_picture'] = basename($path);
             }
 
-
+            // Create the tutor record
             $createdTutor = Tutor::create($data);
 
             \Log::info('Attempting to send email to: ' . $createdTutor->email);
 
-            // Send the email
+            // Send the welcome email
             Mail::to($createdTutor->email)->send(new WelcomeMail($createdTutor));
             
             \Log::info('Email sent successfully to: ' . $createdTutor->email);
@@ -69,6 +71,7 @@ class TutorService
      */
     public function updateTutor(Request $request, $id)
     {
+        // Validate the request data
         $data = $request->validate([
             'name' => 'required|string',
             'email' => 'required|string|email|unique:tutors,email,' . $id,
@@ -81,6 +84,7 @@ class TutorService
         $tutor = Tutor::findOrFail($id);
 
         try {
+            // Handle profile picture upload
             if ($request->hasFile('profile_picture')) {
                 if ($tutor->profile_picture && file_exists(storage_path('app/public/images/' . $tutor->profile_picture))) {
                     unlink(storage_path('app/public/images/' . $tutor->profile_picture));
@@ -89,6 +93,7 @@ class TutorService
                 $data['profile_picture'] = basename($path);
             }
 
+            // Update the tutor record
             $tutor->update($data);
             return ['success' => true, 'message' => 'Tutor updated successfully.'];
         } catch (\Exception $e) {
@@ -105,6 +110,7 @@ class TutorService
         $tutor = Tutor::findOrFail($id);
 
         try {   
+            // Delete the tutor record
             $tutor->delete();
             return ['success' => true, 'message' => 'Tutor deleted successfully.'];
         } catch (\Exception $e) {

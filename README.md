@@ -64,3 +64,16 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## TutorLink
+
+TutorLink is a web-based platform designed to connect students with qualified tutors. The platform allows students to search for tutors based on their specific needs, such as subject expertise and hourly rate. Tutors can create profiles, including their qualifications, areas of expertise, and hourly rates, while students can browse through available tutors and directly contact them for tutoring sessions.
+
+## Key Features:
+
+Tutor Registration: Tutors can sign up, create a profile, and specify their teaching expertise, hourly rates, and availability.
+Student Registration: Students can register, search for tutors based on subjects and rates, and contact tutors directly.
+Tuition Listings: Tutors' profiles are displayed on a tuition listings page, where students can easily browse available tutors.
+Authentication: Secure login and registration functionality for both students and tutors using Laravel's built-in authentication system.
+The system is designed to make the tutoring process seamless, offering a user-friendly interface for both tutors and students.
+
