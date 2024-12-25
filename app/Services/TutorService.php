@@ -2,10 +2,12 @@
 
 namespace App\Services;
 
+use App\Mail\WelcomeMail;
 use App\Models\Tutor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
+use Mail;
 
 class TutorService
 {
@@ -37,7 +39,16 @@ class TutorService
                 $data['profile_picture'] = basename($path);
             }
 
-            Tutor::create($data);
+
+            $createdTutor = Tutor::create($data);
+
+            \Log::info('Attempting to send email to: ' . $createdTutor->email);
+
+            // Send the email
+            Mail::to($createdTutor->email)->send(new WelcomeMail($createdTutor));
+            
+            \Log::info('Email sent successfully to: ' . $createdTutor->email);
+
             return ['success' => true, 'message' => 'Tutor added successfully.'];
         } catch (\Exception $e) {
             Log::error('Error creating tutor: ' . $e->getMessage());

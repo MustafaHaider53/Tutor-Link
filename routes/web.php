@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -56,6 +57,9 @@ Route::prefix('admin')->middleware(ValidAdmin::class)->group(function () {
     
     Route::resource('relationship',RelationShipController::class);
 }); 
+
+
+
 
 
 

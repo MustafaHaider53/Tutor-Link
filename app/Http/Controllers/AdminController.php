@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Services\TutorService;
 use Illuminate\Http\Request;
+use App\Mail\WelcomeMail;
+use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
