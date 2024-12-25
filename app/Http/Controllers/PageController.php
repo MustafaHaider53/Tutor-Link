@@ -5,6 +5,8 @@ use App\Models\Tuition;
 use App\Models\Tutor; // Import the Tutor model
 use App\Models\Student; // Import the Tutor model
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\TutorNotification;
 
 
 
@@ -122,6 +124,19 @@ public function registerStudent(Request $request)
     ]); 
     
     return "<h1>Studen Register sucessgully</h1>";
+}
+
+public function sendEmail(Request $request, Tutor $tutor)
+{
+    try {
+        // Send the email using Laravel's Mail facade
+        Mail::to($tutor->email)->send(new TutorNotification($tutor));
+
+        return redirect()->route('tuition-list')->with('success', 'Email sent successfully to ' . $tutor->email);
+    } catch (\Exception $e) {
+        \Log::error('Error sending email: ' . $e->getMessage());
+        return redirect()->route('tuition-list')->with('error', 'Failed to send email to ' . $tutor->email);
+    }
 }
 
 

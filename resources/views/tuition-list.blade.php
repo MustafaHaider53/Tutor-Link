@@ -24,7 +24,12 @@
                 @foreach ($tutors as $tutor)
                     <tr class="tutor-row">
                         <td class="table-cell">{{ $tutor->name }}</td>
-                        <td class="table-cell">{{ $tutor->email }}</td>
+                        <td class="table-cell">
+                            <form action="{{ route('send.email', $tutor->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                <button type="submit" class="email-button">{{ $tutor->email }}</button>
+                            </form>
+                        </td>
                         <td class="table-cell">{{ $tutor->phone }}</td>
                         {{-- <td class="table-cell">{{ $tutor->subjects_taught }}</td>
                         <td class="table-cell">{{ $tutor->availability_days}}</td> --}}
