@@ -1,0 +1,114 @@
+<?php
+
+namespace App\Services;
+
+use App\Models\Tutor;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
+
+class TutorService
+{
+    /**
+     * Get all tutors.
+     */
+    public function getAllTutors()
+    {
+        return Tutor::all();
+    }
+
+    /**
+     * Create a new tutor.
+     */
+    public function createTutor(Request $request)
+    {
+        $data = $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|string|email|unique:tutors',
+            'phone' => 'required|string|max:15',
+            'profile_picture' => 'nullable|image|mimes:png,jpg,jpeg|max:2048',
+            'subjects_taught' => 'nullable',
+            'availability_days' => 'nullable',
+        ]);
+
+        try {
+            if ($request->hasFile('profile_picture')) {
+                $path = $request->file('profile_picture')->store('images', 'public');
+                $data['profile_picture'] = basename($path);
+            }
+
+            Tutor::create($data);
+            return ['success' => true, 'message' => 'Tutor added successfully.'];
+        } catch (\Exception $e) {
+            Log::error('Error creating tutor: ' . $e->getMessage());
+            return ['success' => false, 'message' => 'Something went wrong. Please try again later.'];
+        }
+    }
+
+    /**
+     * Get a single tutor by ID.
+     */
+    public function getTutorById($id)
+    {
+        return Tutor::findOrFail($id);
+    }
+
+    /**
+     * Update a tutor.
+     */
+    public function updateTutor(Request $request, $id)
+    {
+        $data = $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|string|email|unique:tutors,email,' . $id,
+            'phone' => 'required|string|max:15',
+            'profile_picture' => 'nullable|image|mimes:png,jpg,jpeg|max:2048',
+            'subjects_taught' => 'nullable',
+            'availability_days' => 'nullable',
+        ]);
+
+        $tutor = Tutor::findOrFail($id);
+
+        try {
+            if ($request->hasFile('profile_picture')) {
+                if ($tutor->profile_picture && file_exists(storage_path('app/public/images/' . $tutor->profile_picture))) {
+                    unlink(storage_path('app/public/images/' . $tutor->profile_picture));
+                }
+                $path = $request->file('profile_picture')->store('images', 'public');
+                $data['profile_picture'] = basename($path);
+            }
+
+            $tutor->update($data);
+            return ['success' => true, 'message' => 'Tutor updated successfully.'];
+        } catch (\Exception $e) {
+            Log::error('Error updating tutor: ' . $e->getMessage());
+            return ['success' => false, 'message' => 'Something went wrong. Please try again later.'];
+        }
+    }
+
+    /**
+     * Delete a tutor.
+     */
+    public function deleteTutor($id)
+    {
+        $tutor = Tutor::findOrFail($id);
+
+        try {   
+            $tutor->delete();
+            return ['success' => true, 'message' => 'Tutor deleted successfully.'];
+        } catch (\Exception $e) {
+            Log::error('Error deleting tutor: ' . $e->getMessage());
+            return ['success' => false, 'message' => 'Something went wrong. Please try again later.'];
+        }
+    }
+
+    /**
+     * Search for tutors.
+     */
+    public function searchTutors($query)
+    {
+        return Tutor::where('name', 'LIKE', '%' . $query . '%')
+            ->orWhere('email', 'LIKE', '%' . $query . '%')
+            ->get();
+    }
+}
