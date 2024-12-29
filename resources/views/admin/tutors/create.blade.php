@@ -34,7 +34,13 @@
             <div class="form-group">
                 <label for="availability_days">Availability Days</label>
                 <input type="text" name="availability_days" id="availability_days" class="form-control" required>
-            </div>            
+            </div>
+            
+            <div class="form-group">
+                <label for="hourly_rate">Hourly Rate</label>
+                <input type="number" name="hourly_rate" id="hourly_rate" class="form-control" required>
+            </div>
+
 
             <button type="submit" class="btn btn-primary">Save Tutor</button>
         </form>

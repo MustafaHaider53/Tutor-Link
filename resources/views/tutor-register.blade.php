@@ -5,7 +5,7 @@
 @section('content')
 <div class="container mt-5 custom-form-container">
     <h2 class="custom-form-heading">Tutor Registration</h2>
-    <form action="{{ route('tutor.register.submit') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('tutor.register.submit') }}" method="POST" enctype="multipart/form-data" class="shadow-lg p-4 rounded bg-white">
         @csrf
         <div class="form-group custom-form-group">
             <label for="name" class="custom-label">Full Name</label>
@@ -98,4 +98,5 @@
         <button type="submit" class="btn btn-primary custom-submit-button">Register</button>
     </form>
 </div>
+
 @endsection

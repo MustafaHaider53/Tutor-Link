@@ -1,3 +1,4 @@
+
 <header class="bg-primary text-white p-3">
     <nav class="navbar navbar-expand-lg navbar-dark">
         <a class="navbar-brand" href="{{ route('home') }}">Tutor Link</a>
@@ -11,7 +12,7 @@
                 <li class="nav-item nav-elem"><a class="nav-link" href="{{ route('student-register') }}">Student Register</a></li>
                 <li class="nav-item nav-elem"><a class="nav-link" href="{{ route('tuition-list') }}">Tuition Listings</a></li>
                 <li class="nav-item nav-elem"><a class="nav-link" href="{{ route('messages') }}">Messages</a></li>
-
+                <li class="nav-item nav-elem"><a class="nav-link" href="{{ route('aboutUs') }}">About Us</a></li>
             </ul>
         </div>
     </nav>

@@ -175,3 +175,173 @@ h2 {
 .email-button:hover {
     color: darkblue;
 }   
+
+
+/* header */
+
+
+    .navbar-brand {
+        
+        font-size: 1.5rem;
+    }
+    .nav-link {
+        font-family: 'Roboto', sans-serif;
+        font-size: 1.1rem;
+        transition: color 0.3s ease;
+    }
+    .nav-link:hover {
+        color: #ffcc00;
+    }
+    .navbar {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .nav-elem {
+        margin-left: 15px;
+    }
+
+
+    .custom-form-container {
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+    }
+    .custom-form-container:hover {
+        transform: scale(1.02);
+    }
+    .custom-form-heading {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #343a40;
+        font-family: 'Arial', sans-serif;
+        font-size: 24px;
+        font-weight: bold;
+    }
+    .custom-form-group {
+        margin-bottom: 15px;
+    }
+    .custom-label {
+        font-weight: bold;
+        color: #495057;
+        font-family: 'Arial', sans-serif;
+    }
+    .custom-input, .custom-textarea, .custom-select {
+        border-radius: 5px;
+        border: 1px solid #ced4da;
+        transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+    .custom-input:focus, .custom-textarea:focus, .custom-select:focus {
+        border-color: #80bdff;
+        box-shadow: 0 0 5px rgba(128, 189, 255, 0.5);
+    }
+    .custom-checkbox-label {
+        margin-left: 5px;
+    }
+    .custom-submit-button {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        background: linear-gradient(135deg, #007bff, #0056b3);
+        border: none;
+        color: white;
+        transition: background 0.3s ease-in-out;
+    }
+    .custom-submit-button:hover {
+        background: linear-gradient(135deg, #0056b3, #003d80);
+    }
+
+
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .card {
+        background: linear-gradient(135deg, #ffffff, #f0f0f0);
+        border-radius: 15px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-header {
+        background: linear-gradient(135deg, #007bff, #0056b3);
+        padding: 20px;
+        font-size: 1.5em;
+        font-weight: bold;
+        text-align: center;
+        color: white;
+    }
+
+    .card-content {
+        padding: 20px;
+        font-family: 'Arial', sans-serif;
+        color: #333;
+    }
+
+    .profile-picture {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        transition: transform 0.3s ease;
+        margin: 0 auto;
+        display: block;
+    }
+
+    .profile-picture:hover {
+        transform: scale(1.1);
+    }
+
+    .email-button {
+        background: none;
+        border: none;
+        color: #080808;
+        cursor: pointer;
+        text-decoration: underline;
+        font-size: 1em;
+    }
+
+    .email-button:hover {
+        color: #0056b3;
+    }
+
+    .card-content p {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .card:hover .card-content p {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .card-header {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .card-header::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(90deg, transparent, #ffcc00, transparent);
+        transition: transform 0.3s ease;
+        transform: translateX(-100%);
+    }
+
+    .card:hover .card-header::after {
+        transform: translateX(0);
+    }

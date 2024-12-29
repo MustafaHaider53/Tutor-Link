@@ -124,4 +124,9 @@ class PageController extends Controller
             return redirect()->route('tuition-list')->with('error', 'Failed to send email to ' . $tutor->email);
         }
     }
+
+    public function aboutUs()
+    {
+        return view('about');
+    }
 }

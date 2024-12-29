@@ -38,6 +38,11 @@
                 <input type="text" name="availability_days" id="availability_days" class="form-control" value="{{ $tutor->availability_days }}" required>
             </div>
 
+            <div class="form-group">
+                <label for="hourly_rate">Hourly Rate</label>
+                <input type="number" name="hourly_rate" id="hourly_rate" class="form-control" value="{{ $tutor->hourly_rate }}" required>
+            </div>
+
             
             <button type="submit" class="btn btn-primary">Update Tutor</button>
         </form>

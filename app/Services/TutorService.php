@@ -32,6 +32,7 @@ class TutorService
             'profile_picture' => 'nullable|image|mimes:png,jpg,jpeg|max:2048',
             'subjects_taught' => 'nullable',
             'availability_days' => 'nullable',
+            'hourly_rate' => 'required|numeric',
         ]);
 
         try {
@@ -79,6 +80,7 @@ class TutorService
             'profile_picture' => 'nullable|image|mimes:png,jpg,jpeg|max:2048',
             'subjects_taught' => 'nullable',
             'availability_days' => 'nullable',
+            'hourly_rate' => 'required|numeric',
         ]);
 
         $tutor = Tutor::findOrFail($id);

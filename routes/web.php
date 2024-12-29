@@ -30,6 +30,7 @@ Route::get('/tuition-list', [PageController::class, 'tuitionList'])->name('tuiti
 Route::get('/messages', [PageController::class, 'messages'])->name('messages');
 Route::post('/tutor/register', [PageController::class, 'registerTutor'])->name('tutor.register.submit');
 Route::post('/student-registration', [PageController::class, 'registerStudent'])->name('student.register.submit');
+Route::get('/aboutUs', [PageController::class, 'aboutUs'])->name('aboutUs');
 Route::post('/send-email/{tutor}', [PageController::class, 'sendEmail'])->name('send.email');
 
 

@@ -50,4 +50,5 @@ class AuthServiceProvider extends ServiceProvider
     {
         return $this->policies;
     }
+
 }
