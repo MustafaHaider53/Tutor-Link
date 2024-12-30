@@ -5,9 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\TutorApiController;
 use App\Http\Controllers\Api\AuthController;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:api');
+
 
 
 
@@ -18,14 +16,14 @@ Route::post('/signup', [AuthController::class, 'signup']);
 Route::post('/login', [AuthController::class, 'login']);
 
 // Public route for logout
-Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:api');
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
 
 
 
  // Logout route (revoke the access token)
  
-Route::middleware('auth:api')->name('tutor.')->prefix('tutor')->group(function() {
+Route::middleware('auth:sanctum')->name('tutor.')->prefix('tutor')->group(function() {
     Route::get('/', [TutorApiController::class, 'index'])->name('index');
     Route::post('store', [TutorApiController::class, 'store'])->name('store');
     Route::get('{id}', [TutorApiController::class, 'show'])->name('show');

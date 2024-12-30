@@ -56,7 +56,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
             // Generate token for the user
-            $token = $user->createToken('TutorLink')->accessToken;
+            $token = $user->createToken('TutorLink')->plainTextToken;
 
             Log::info('User logged in successfully', ['user' => $user]);
 
