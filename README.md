@@ -23,13 +23,15 @@ Tutor Link simplifies the process of finding and hiring tutors for students and 
 ### Steps to Set Up
 
 Clone the repository:
-``````bash
+```
 git clone https://github.com/yourusername/tutorlink.git
+```
+```
 cd tutorlink
-
+```
 Install dependencies:
 
-```bash
+```
  
 composer install
 npm install && npm run dev
