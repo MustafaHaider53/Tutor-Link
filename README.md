@@ -24,7 +24,7 @@ Tutor Link simplifies the process of finding and hiring tutors for students and 
 
 Clone the repository:
 ```
-git clone https://github.com/yourusername/tutorlink.git
+git clone https://github.com/MustafaHaider53/Tutor-Link.git
 ```
 ```
 cd tutorlink
@@ -35,14 +35,16 @@ Install dependencies:
  
 composer install
 npm install && npm run dev
+```
 Configure the environment:
 
-```bash
- 
-cp .env.example .env
+
+```
+cp .env  example.env
+```
 Update the .env file with your database credentials:
 
-makefile
+```
  
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
@@ -50,31 +52,36 @@ DB_PORT=3306
 DB_DATABASE=tutorlink
 DB_USERNAME=root
 DB_PASSWORD=yourpassword
+```
 Generate the application key:
 
-```bash
- 
+
+```
 php artisan key:generate
+```
 Run migrations and seed the database:
 
-```bash
+```
  
 php artisan migrate --seed
+```
 Install Laravel Passport:
 
-```bash
- 
+```
 php artisan passport:install
+```
 Start the development server:
 
-```bash
+```
  
 php artisan serve
+```
 Open your browser and visit:
 
-```bash
+```
  
 http://127.0.0.1:8000
+```
 
 
 Usage Guide
@@ -94,24 +101,28 @@ We welcome contributions! Please follow the steps below:
 
 Fork the repository:
 
-```bash
+```
  
 git clone https://github.com/yourusername/tutorlink.git
+```
 Create a feature branch:
 
-```bash
+```
  
 git checkout -b feature-name
+```
 Commit your changes:
 
-```bash
+```
  
 git commit -m 'Add feature-name'
+```
 Push to the branch:
 
-```bash
+```
  
 git push origin feature-name
+```
 Open a pull request.
 
 License
